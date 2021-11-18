@@ -3,8 +3,10 @@ function returnsExplicitAny() {
     return 3 as any
 }
 
+type AliasedAny = any
+
 // This should stay intact because explicity defined as any
-const anyObject = {} as any
+const anyObject = {} as AliasedAny
 
 export class TestClass {
     referencedAny() {
@@ -26,4 +28,8 @@ export class TestClass {
     }
     // this should be annotated as unknown because it is not referenced
     unreferencedImplicitAnyParam(params) { }
+
+    explicitAnyParam(params: AliasedAny) { }
+
+    numberParam(params: number) { }
 }
